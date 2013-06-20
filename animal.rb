@@ -8,14 +8,7 @@ def initialize(name, breed, age, sex, favorite_toy)
   @age = age
   @sex = sex
   @favorite_toy = favorite_toy
-  @owner = []
 end
-
-
-def has_owner?
-  self.owner.any?
-end
-
 
 def to_s
   "#{@name} is a beautiful #{@age} year-old #{@sex} #{@breed} who loves #{@favorite_toy} above everthing else. "

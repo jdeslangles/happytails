@@ -5,9 +5,9 @@ require_relative 'shelter'
 require_relative 'animal'
 
 def menu
-  puts 'clear'
+  puts `clear`
   puts "************Happy Tails************"
-  puts "\nWelcome to Happy Tails Shelter."
+  puts "\nWelcome to Happy Tails Shelter!"
   puts "\n        _='`'=_"
   puts "       //(@_@)||"
   puts "      |||( Y )|||"
@@ -27,10 +27,7 @@ end
 
 
 #animal categories available at the shelter
-dogs = Shelter.new "Dogs"
-cats = Shelter.new "Cats"
-fishes = Shelter.new "Fishes"
-turtles = Shelter.new "Turtles"
+happytails = Shelter.new
 
 #list of animals in shelter's database
 dog_1 = Animal.new "Snowy", "Fox Terrier", 4,:male, "his red ball"
@@ -43,16 +40,16 @@ turtle_1 = Animal.new "Josephine", "Galapagos turtle", 120, :female, "meditation
 
 
 [dog_1, dog_2, dog_3].each do |dog|
-  dogs.animals[dog.name] = dog
+  happytails.available[dog.name.downcase.sub(' ', '').to_sym] = dog
 end
 [cat_1, cat_2].each do |cat|
-  cats.animals[cat.name] = cat
+  happytails.available[cat.name.downcase.sub(' ', '').to_sym] = cat
 end
 [fish_1].each do |fish|
-  fishes.animals[fish.name] = fish
+  happytails.available[fish.name.downcase.sub(' ', '').to_sym] = fish
 end
 [turtle_1].each do |turtle|
-  turtles.animals[turtle.name] = turtle
+  happytails.available[turtle.name.downcase.sub(' ', '').to_sym] = turtle
 end
 
 #list of clients in shelter's database
@@ -62,50 +59,67 @@ client_3 = Client.new "Marshall", 39, :male, 2, 0
 client_4 = Client.new "Robin", 29, :female, 0, 1
 client_5 = Client.new "Lily", 29, :female, 2, 0
 
-dog_1.owner << client_1
-dog_2.owner << client_2
-fish_1.owner << client_4
-
-
-
-# method to display the full list of animals by category
-def complete_list
-
-
-  gets
+[client_1, client_2, client_3, client_4, client_5].each do |client|
+  happytails.clients[client.name.downcase.to_sym] = client
 end
-
-# method to allow clients to adopt an animal
-def adopt
-
-  gets
-end
-
-# method to allow clients to give up an animal
-def give_up
-
-  gets
-end
-
-# method to see the client list
-def client_list
-
-  gets
-end
-
 
 response = menu
 
 while response != 'q'
   case response
     when 'a'
-        complete_list
+
+        puts "\nCurrently up for adoption:"
+        puts happytails.available.keys.join(", ")
+        puts
+        puts "Please press Enter to come back to the main menu"
+        gets
+
     when 'b'
-        adoption_list
+        puts "\nThis is the list of our clients:"
+        puts happytails.clients.keys.join(", ")
+        puts "\nWhich one is you? Please enter your name:"
+        name = gets.chomp.downcase.to_sym
+        puts
+        puts "\nWhat fantastic animal will you be bringing home today?"
+        puts "\nAvailable today are: "
+        puts happytails.available.keys.join(", ")
+        puts
+        puts "Please enter the name of the pet you would like to adopt:"
+        adoption_choice = gets.chomp.downcase.to_sym
+        happytails.adopt (name), (adoption_choice)
+        puts "..."
+        puts "..."
+        puts "Thank you for making #{adoption_choice} a new member of your family!"
+        puts
+        puts "Please press Enter to come back to the main menu"
+        gets
+
     when 'c'
-        give_up
+        puts "\nThis is the list of our clients:"
+        puts happytails.clients.keys.join(". ")
+        puts "\nWhich one is you? Please enter your name:"
+        name = gets.chomp.downcase.to_sym
+        puts
+        puts happytails.clients[name].animals.keys.join(". ")
+        puts "Please enter the name of your pet:"
+        give_up = gets.chomp.downcase.to_sym
+        happytails.taking_in (name), (give_up)
+        puts "..."
+        puts "..."
+        puts "Thank you. We will make sure #{give_up} finds a good home!"
+        puts
+        puts "Please press Enter to come back to the main menu"
+        gets
+
     when 'd'
-        client_list
+        puts 'clear'
+        puts "\nOur clients:"
+        puts
+        puts happytails.clients.keys.join(", ")
+        puts
+        puts "Please press Enter to come back to the main menu"
+        gets
 end
 
 response = menu
