@@ -1,7 +1,10 @@
-class Person
+class Client
 
-def initialize(name, pets)
+def initialize(name, age, sex, kids = nil, pets = nil)
   @name = name
+  @age = age
+  @sex = sex
+  @kids = kids
   @pets = pets
 end
 
