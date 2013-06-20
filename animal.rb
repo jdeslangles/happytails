@@ -1,4 +1,4 @@
-class Animals
+class Animal
 
 attr_accessor :name, :breed, :age, :sex, :favorite_toy, :owner
 

@@ -1,9 +1,10 @@
 class Shelter
 
-  attr_accessor :categories
+  attr_accessor :animals, :clients
 
-  def initialize(categories)
-    @categories = {}
+  def initialize(animals)
+    @animals = {}
+    @clients = {}
   end
 
   def to_s
