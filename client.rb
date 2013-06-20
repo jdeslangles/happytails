@@ -1,15 +1,17 @@
 class Client
 
-def initialize(name, age, sex, kids = nil, pets = nil)
+  attr_accessor :name, :age, :sex, :kids, :pets
+
+def initialize(name, age, sex, kids, pets = nil)
   @name = name
   @age = age
   @sex = sex
   @kids = kids
-  @pets = pets
+  @pets = []
 end
 
 def to_s
-  "#{name} is a beautiful #{sex} #{breed} who loves to play with #{favorite_toy}"
+  "#{name} is #{sex} year-old, #{sex} and has #{kids}."
 end
 
 end
