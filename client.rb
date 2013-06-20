@@ -11,7 +11,7 @@ def initialize(name, age, sex, kids, pet)
 end
 
 def to_s
-  "#{name} is #{sex} year-old, #{sex} and has #{kids} kid(s). Currently owns #{animals} pet(s)."
+  "#{name} is #{sex}, #{age}year-old and has #{kids} kid(s). Currently owns #{animals} pet(s)."
 end
 
 end

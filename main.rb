@@ -72,6 +72,10 @@ while response != 'q'
         puts "\nCurrently up for adoption:"
         puts happytails.available.keys.join(", ")
         puts
+        puts "Some more details about these pets:"
+        puts
+        puts happytails.available
+        puts
         puts "Please press Enter to come back to the main menu"
         gets
 
@@ -81,15 +85,15 @@ while response != 'q'
         puts "\nWhich one is you? Please enter your name:"
         name = gets.chomp.downcase.to_sym
         puts
-        puts "\nWhat fantastic animal will you be bringing home today?"
+        puts "What fantastic animal will you be bringing home today?"
         puts "\nAvailable today are: "
+        puts
         puts happytails.available.keys.join(", ")
         puts
         puts "Please enter the name of the pet you would like to adopt:"
         adoption_choice = gets.chomp.downcase.to_sym
         happytails.adopt (name), (adoption_choice)
-        puts "..."
-        puts "..."
+        puts
         puts "Thank you for making #{adoption_choice} a new member of your family!"
         puts
         puts "Please press Enter to come back to the main menu"
@@ -105,8 +109,7 @@ while response != 'q'
         puts "Please enter the name of your pet:"
         give_up = gets.chomp.downcase.to_sym
         happytails.taking_in (name), (give_up)
-        puts "..."
-        puts "..."
+        puts
         puts "Thank you. We will make sure #{give_up} finds a good home!"
         puts
         puts "Please press Enter to come back to the main menu"
@@ -117,6 +120,9 @@ while response != 'q'
         puts "\nOur clients:"
         puts
         puts happytails.clients.keys.join(", ")
+        puts
+        puts "In more details..."
+        puts happytails.clients
         puts
         puts "Please press Enter to come back to the main menu"
         gets
