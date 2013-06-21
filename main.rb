@@ -68,20 +68,25 @@ response = menu
 while response != 'q'
   case response
     when 'a'
-
+      puts "***********************************"
         puts "\nCurrently up for adoption:"
         puts happytails.available.keys.join(", ")
+       puts "***********************************"
         puts
         puts "Some more details about these pets:"
         puts
-        puts happytails.available
+        happytails.available.each do |key, animal|
+          puts "\n#{key.upcase}: #{animal.name} is a beautiful #{animal.age} year-old #{animal.sex} #{animal.breed} who loves #{animal.favorite_toy} above everthing else. "
+        end
         puts
         puts "Please press Enter to come back to the main menu"
         gets
 
     when 'b'
+      puts "***********************************"
         puts "\nThis is the list of our clients:"
         puts happytails.clients.keys.join(", ")
+      puts "***********************************"
         puts "\nWhich one is you? Please enter your name:"
         name = gets.chomp.downcase.to_sym
         puts
@@ -100,8 +105,10 @@ while response != 'q'
         gets
 
     when 'c'
+      puts "***********************************"
         puts "\nThis is the list of our clients:"
         puts happytails.clients.keys.join(". ")
+      puts "*******************************************************************"
         puts "\nWhich one is you? Please enter your name:"
         name = gets.chomp.downcase.to_sym
         puts
@@ -116,13 +123,15 @@ while response != 'q'
         gets
 
     when 'd'
-        puts 'clear'
+      puts "***********************************"
         puts "\nOur clients:"
-        puts
         puts happytails.clients.keys.join(", ")
+      puts "***********************************"
         puts
         puts "In more details..."
-        puts happytails.clients
+        happytails.clients.each do |key, client|
+          puts "\n#{key.upcase}: #{client.name} is #{client.sex}, #{client.age} year-old and has #{client.kids} kid(s). Currently owns #{client.animals} pet(s). "
+        end
         puts
         puts "Please press Enter to come back to the main menu"
         gets
