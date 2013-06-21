@@ -1,6 +1,6 @@
 class Shelter
 
-  attr_accessor :available, :clients, :adopted
+  attr_accessor :available, :clients
 
   def initialize
     @available = {}
